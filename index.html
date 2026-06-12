@@ -1,49 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>彼の気持ちタロット｜診断導線ラボ</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彼の気持ちタロット｜3枚引き</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="page">
     <section class="hero">
-      <div class="moon">☾</div>
-      <p class="label">Love Tarot Reading</p>
+      <div class="hero-icon">☾</div>
+      <p class="eyebrow">Love Tarot Reading</p>
       <h1>彼の気持ち<br>タロット</h1>
-      <p class="lead">今、彼はあなたをどう思っている？<br>直感でカードを1枚選んでください。</p>
-      <a href="#cards" class="start-button">カードを選ぶ</a>
+      <p class="lead">
+        復縁・片思い・恋人関係・音信不通。<br>
+        今の悩みに合わせて、過去・現在・未来の3枚で彼の気持ちを読み解きます。
+      </p>
+      <a href="#setup" class="primary-button">占いを始める</a>
     </section>
-    <section id="cards" class="cards-section">
-      <p class="section-label">直感で1枚選んでください</p>
-      <div class="cards" id="cardsWrap">
-        <button class="tarot-card" aria-label="カード1を選ぶ"><span class="card-back"><span>✦</span></span></button>
-        <button class="tarot-card" aria-label="カード2を選ぶ"><span class="card-back"><span>☽</span></span></button>
-        <button class="tarot-card" aria-label="カード3を選ぶ"><span class="card-back"><span>✧</span></span></button>
+
+    <section id="setup" class="setup panel">
+      <p class="section-label">Step 1</p>
+      <h2>今の悩みを選んでください</h2>
+      <p class="phase-text">選んだ悩みに合わせて、結果文とLINE登録文が少し変わります。</p>
+
+      <div class="worry-grid" id="worryGrid">
+        <button class="worry-button active" data-worry="復縁">復縁</button>
+        <button class="worry-button" data-worry="片思い">片思い</button>
+        <button class="worry-button" data-worry="恋人">恋人</button>
+        <button class="worry-button" data-worry="音信不通">音信不通</button>
       </div>
-      <p class="hint">迷ったら、最初に目に入ったカードでOKです。</p>
+
+      <details class="custom-area">
+        <summary>占い師用：LINE導線文を差し替える</summary>
+        <div class="custom-grid">
+          <label>
+            占い師名・サービス名
+            <input id="readerName" type="text" placeholder="例：月乃占い、〇〇先生の恋愛鑑定">
+          </label>
+          <label>
+            LINE登録ボタン文
+            <input id="lineButtonText" type="text" placeholder="例：詳しい解釈をLINEで受け取る">
+          </label>
+          <label>
+            LINE登録前の案内文
+            <textarea id="lineLeadText" placeholder="例：このカードの詳しい意味と、今送るべきLINE例文を無料でお届けします。"></textarea>
+          </label>
+          <label>
+            LINEリンク
+            <input id="lineUrl" type="text" placeholder="例：https://lin.ee/xxxx">
+          </label>
+        </div>
+      </details>
+
+      <a href="#spread" class="primary-button wide">カードを選ぶ</a>
     </section>
-    <section id="result" class="result hidden">
-      <div class="sparkle sparkle-1">✦</div>
-      <div class="sparkle sparkle-2">✧</div>
-      <div class="result-card">
-        <p class="result-label">あなたが引いたカード</p>
-        <div id="cardIcon" class="card-icon">☽</div>
-        <h2 id="cardName">月</h2>
-        <p id="position" class="position">正位置</p>
-        <div class="message-box"><h3>彼の今の気持ち</h3><p id="mainMessage"></p></div>
-        <div class="message-box"><h3>今あなたが取るべき行動</h3><p id="actionMessage"></p></div>
+
+    <section id="spread" class="spread-section panel">
+      <div class="reading-header">
+        <p class="section-label">Step 2 / Three Card Spread</p>
+        <h2 id="phaseTitle">まずは「過去」のカードを選んでください</h2>
+        <p class="phase-text" id="phaseText">今の恋に影響している、これまでの流れを見ていきます。</p>
+      </div>
+
+      <div class="slot-row">
+        <div class="slot">
+          <p class="slot-label">過去</p>
+          <div class="slot-box" id="pastSlot">未選択</div>
+        </div>
+        <div class="slot">
+          <p class="slot-label">現在</p>
+          <div class="slot-box" id="presentSlot">未選択</div>
+        </div>
+        <div class="slot">
+          <p class="slot-label">未来</p>
+          <div class="slot-box" id="futureSlot">未選択</div>
+        </div>
+      </div>
+
+      <div class="cards" id="cardGrid">
+        <button class="tarot-card" aria-label="カード1"><span class="card-shell"><span class="ornament top">✦</span><span class="center-mark">☽</span><span class="ornament bottom">✧</span></span></button>
+        <button class="tarot-card" aria-label="カード2"><span class="card-shell alt"><span class="ornament top">☼</span><span class="center-mark">✧</span><span class="ornament bottom">☾</span></span></button>
+        <button class="tarot-card" aria-label="カード3"><span class="card-shell"><span class="ornament top">✷</span><span class="center-mark">◎</span><span class="ornament bottom">✦</span></span></button>
+        <button class="tarot-card" aria-label="カード4"><span class="card-shell alt"><span class="ornament top">✧</span><span class="center-mark">♢</span><span class="ornament bottom">☼</span></span></button>
+        <button class="tarot-card" aria-label="カード5"><span class="card-shell"><span class="ornament top">☽</span><span class="center-mark">♡</span><span class="ornament bottom">✷</span></span></button>
+        <button class="tarot-card" aria-label="カード6"><span class="card-shell alt"><span class="ornament top">◎</span><span class="center-mark">✦</span><span class="ornament bottom">☾</span></span></button>
+        <button class="tarot-card" aria-label="カード7"><span class="card-shell"><span class="ornament top">♢</span><span class="center-mark">☀</span><span class="ornament bottom">✧</span></span></button>
+        <button class="tarot-card" aria-label="カード8"><span class="card-shell alt"><span class="ornament top">✦</span><span class="center-mark">♛</span><span class="ornament bottom">☽</span></span></button>
+        <button class="tarot-card" aria-label="カード9"><span class="card-shell"><span class="ornament top">✧</span><span class="center-mark">⚡</span><span class="ornament bottom">◎</span></span></button>
+      </div>
+
+      <p class="hint">迷ったら、最初に気になったカードを選んでください。</p>
+    </section>
+
+    <section id="result" class="result hidden panel">
+      <div class="result-header">
+        <p class="section-label">Reading Result</p>
+        <h2>あなたの3枚引き結果</h2>
+        <p class="phase-text" id="resultLead">過去・現在・未来の流れから、彼の気持ちと今後の動きを読み解きます。</p>
+      </div>
+
+      <div class="result-grid" id="resultGrid"></div>
+
+      <div class="summary-card">
+        <h3>総合メッセージ</h3>
+        <p id="summaryText"></p>
+      </div>
+
+      <div class="line-card">
+        <h3 id="readerTitle">さらに詳しく知りたい方へ</h3>
+        <p id="lineLead"></p>
         <a href="#" class="line-button" id="lineButton">詳しい解釈をLINEで受け取る</a>
-        <button class="retry-button" id="retryButton">もう一度カードを選ぶ</button>
       </div>
+
+      <button class="secondary-button" id="retryButton">もう一度3枚引く</button>
     </section>
-    <section class="note">
-      <h2>診断導線ラボのサンプル</h2>
-      <p>このページは、占い師・恋愛相談向けの「タロット → 結果 → LINE登録」導線サンプルです。</p>
-      <p class="small">実際の運用では、LINE登録後に「詳しい解釈」「今送るLINE例文」「個別鑑定案内」などへつなげられます。</p>
+
+    <section class="note panel">
+      <h2>診断導線ラボの営業サンプル</h2>
+      <p>
+        このページは、占い師・恋愛相談向けの
+        「悩み選択 → 3枚引きタロット → LINE登録」導線サンプルです。
+      </p>
+      <p class="small">
+        実運用では「彼に送るLINE例文」「個別鑑定への案内」「復縁可能性の深掘り」などを追加できます。
+      </p>
     </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
