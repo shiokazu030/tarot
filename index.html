@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>彼の気持ちタロット｜診断導線ラボ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="moon">☾</div>
+      <p class="label">Love Tarot Reading</p>
+      <h1>彼の気持ち<br>タロット</h1>
+      <p class="lead">今、彼はあなたをどう思っている？<br>直感でカードを1枚選んでください。</p>
+      <a href="#cards" class="start-button">カードを選ぶ</a>
+    </section>
+    <section id="cards" class="cards-section">
+      <p class="section-label">直感で1枚選んでください</p>
+      <div class="cards" id="cardsWrap">
+        <button class="tarot-card" aria-label="カード1を選ぶ"><span class="card-back"><span>✦</span></span></button>
+        <button class="tarot-card" aria-label="カード2を選ぶ"><span class="card-back"><span>☽</span></span></button>
+        <button class="tarot-card" aria-label="カード3を選ぶ"><span class="card-back"><span>✧</span></span></button>
+      </div>
+      <p class="hint">迷ったら、最初に目に入ったカードでOKです。</p>
+    </section>
+    <section id="result" class="result hidden">
+      <div class="sparkle sparkle-1">✦</div>
+      <div class="sparkle sparkle-2">✧</div>
+      <div class="result-card">
+        <p class="result-label">あなたが引いたカード</p>
+        <div id="cardIcon" class="card-icon">☽</div>
+        <h2 id="cardName">月</h2>
+        <p id="position" class="position">正位置</p>
+        <div class="message-box"><h3>彼の今の気持ち</h3><p id="mainMessage"></p></div>
+        <div class="message-box"><h3>今あなたが取るべき行動</h3><p id="actionMessage"></p></div>
+        <a href="#" class="line-button" id="lineButton">詳しい解釈をLINEで受け取る</a>
+        <button class="retry-button" id="retryButton">もう一度カードを選ぶ</button>
+      </div>
+    </section>
+    <section class="note">
+      <h2>診断導線ラボのサンプル</h2>
+      <p>このページは、占い師・恋愛相談向けの「タロット → 結果 → LINE登録」導線サンプルです。</p>
+      <p class="small">実際の運用では、LINE登録後に「詳しい解釈」「今送るLINE例文」「個別鑑定案内」などへつなげられます。</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
